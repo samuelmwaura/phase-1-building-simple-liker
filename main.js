@@ -4,12 +4,19 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 
-const emptyHeart = document.querySelectorAll('.like-glyph');
+const hearts = document.querySelectorAll('.like-glyph');
 const errorModel = document.querySelectorAll('.hidden')[0];
 
 
-emptyHeart.forEach(heart => {
-  heart.addEventListener('click',onEmptyHeartClick)
+hearts.forEach(heart => {
+   heart.addEventListener('click',function(event){   
+  if(heart.classList.contains('activated-heart')){
+   onFullHeartClick(event);
+  }else{
+   onEmptyHeartClick(event);
+  }  
+   });
+
 });
 
 function onEmptyHeartClick(event){
@@ -29,6 +36,12 @@ function onEmptyHeartClick(event){
   //alert(' This is an empty heart that has been clicked.')  - test for correct grabbing of the html Element.
 }
 
+
+
+function onFullHeartClick(event){
+  event.target.textContent = EMPTY_HEART;         
+  event.target.classList.remove('activated-heart');
+}
 
 
 //------------------------------------------------------------------------------
